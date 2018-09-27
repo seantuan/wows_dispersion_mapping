@@ -2,6 +2,7 @@ import os
 import numpy as np
 import json
 from argparse import ArgumentParser
+import utils.shell
 from utils.helper import excludeOutliers, calibrateData, saveCalibratedData
 
 
@@ -14,8 +15,11 @@ if __name__ == '__main__':
 
 	with open(args.json, 'r') as file:
 		data = json.load(file)
-		points = data['points']
 		fuso_length = data['fuso_length']
+
+	points = []
+	for p in data.points:
+		points.append(Point([p.x, p.y, p.dx, p.dy]))
 
 	excludeOutliers(points)
 	calibrateData(points, fuso_length)

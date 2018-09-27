@@ -28,7 +28,7 @@ class Shell:
 
 
 class Point:
-	def __init__(self, X, color):
+	def __init__(self, X, color=None):
 		self.x = X[0]
 		self.y = X[2]
 		self.dx = X[1]

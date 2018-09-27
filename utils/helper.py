@@ -73,26 +73,26 @@ def isNotOutlier(value, data, m=5):
 
 
 def excludeOutliers(points):
-	directions = np.array([np.arctan2(-point['dy'], abs(point['dx'])) for point in points])
-	xs = np.array([point['x'] for point in points])
-	ys = np.array([point['y'] for point in points])
+	directions = np.array([np.arctan2(-point.dy, abs(point.dx)) for point in points])
+	xs = np.array([point.x for point in points])
+	ys = np.array([point.y for point in points])
 
-	points = [point for point in points if isNotOutlier(np.arctan2(-point['dy'], abs(point['dx'])), directions, 1)]
-	points = [point for point in points if isNotOutlier(point['x'], xs, 3)]
-	points = [point for point in points if isNotOutlier(point['y'], ys, 3)]
+	points = [point for point in points if isNotOutlier(np.arctan2(-point.dy, abs(point.dx)), directions, 1)]
+	points = [point for point in points if isNotOutlier(point.x, xs, 3)]
+	points = [point for point in points if isNotOutlier(point.y, ys, 3)]
 
 
 def calibrateData(points, fuso_length):
 	# rescale
 	scale = 212.75 / float(fuso_length)
 	for point in points:
-		point['x'] = point['x'] * scale
-		point['y'] = point['y'] * scale
+		point.x = point.x * scale
+		point.y = point.y * scale
 
 	# rotate
-	directions = np.array([np.arctan2(-point['dy'], abs(point['dx'])) for point in points])
-	xs = np.array([point['x'] for point in points])
-	ys = np.array([point['y'] for point in points])
+	directions = np.array([np.arctan2(-point.dy, abs(point.dx)) for point in points])
+	xs = np.array([point.x for point in points])
+	ys = np.array([point.y for point in points])
 	
 	c, s = np.cos(np.mean(directions)), np.sin(np.mean(directions))
 	R = np.array(((c, -s), (s, c)))
@@ -101,12 +101,12 @@ def calibrateData(points, fuso_length):
 	xs = xs - np.mean(xs)
 	ys = ys - np.mean(ys)
 	for i, point in enumerate(points):
-		point['x'] = xs[i]
-		point['y'] = ys[i]
+		point.x = xs[i]
+		point.y = ys[i]
 
 
 def saveCalibratedData(filename, points):
-	points_dict = [dict(zip(['x', 'y'], [point['x'], point['y']])) for point in points]
+	points_dict = [dict(zip(['x', 'y'], [point.x, point.y])) for point in points]
 	data = dict({'filename': os.path.splitext(os.path.basename(filename))[0], 'points': points_dict})
 	with open(filename, 'w') as outfile:
 		json.dump(data, outfile, indent=4)

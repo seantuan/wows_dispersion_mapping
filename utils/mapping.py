@@ -12,12 +12,15 @@ def mapping(capture, points):
 	shells = []
 	width = int(capture.get(cv2.CAP_PROP_FRAME_WIDTH))
 	height = int(capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
+	frame_total = int(capture.get(cv2.CAP_PROP_FRAME_COUNT))
+	frame_count = 1
 	previous_img = [np.zeros((height, width), dtype=np.uint8) for _ in range(2)]
 	kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(3,3))
 
 	while(capture.isOpened()):
 		ret, frame = capture.read()
 		if ret == False: break
+		frame_count += 1
 		
 		img = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 		img = cv2.inRange(img, lower_color, upper_color)
@@ -91,6 +94,7 @@ def mapping(capture, points):
 			drawCrosshairs(frame, int(point.x), int(point.y), point.color)
 
 		cv2.putText(frame, "shots: {}".format(len(points)), (10, 20), 1, 1, (0, 255, 0), 1, cv2.LINE_AA)
+		cv2.putText(frame, "frames: {}/{}".format(frame_count, frame_total), (10, 40), 1, 1, (0, 255, 0), 1, cv2.LINE_AA)
 
 		previous_img[1] = previous_img[0].copy()
 		previous_img[0] = img.copy()

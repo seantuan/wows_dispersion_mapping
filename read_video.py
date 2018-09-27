@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 from argparse import ArgumentParser
 import utils.shell
-from utils.helper import measureFuso, saveData, saveSnapshot
+from utils.helper import measureFuso, saveData, saveSnapshot, excludeOutliers, calibrateData, saveCalibratedData
 from utils.mapping import mapping
 
 
@@ -25,3 +25,8 @@ if __name__ == '__main__':
 
 	saveData(os.path.splitext(args.video)[0] + '.json', points, fuso_length)
 	saveSnapshot(os.path.splitext(args.video)[0] + '.jpg', snapshot, points, fuso_box)
+
+	# calibrate
+	excludeOutliers(points)
+	calibrateData(points, fuso_length)
+	saveCalibratedData(os.path.splitext(args.video)[0] + '_calibrated.json', points)
