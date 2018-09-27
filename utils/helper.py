@@ -98,6 +98,8 @@ def calibrateData(points, fuso_length):
 	R = np.array(((c, -s), (s, c)))
 	X = np.dot(R, np.stack((xs, ys)))
 	xs, ys = X[0, :], X[1, :]
+	xs = xs - np.mean(xs)
+	ys = ys - np.mean(ys)
 	for i, point in enumerate(points):
 		point['x'] = xs[i]
 		point['y'] = ys[i]

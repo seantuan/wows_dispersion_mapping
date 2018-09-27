@@ -5,7 +5,7 @@ from argparse import ArgumentParser
 from utils.helper import excludeOutliers, calibrateData, saveCalibratedData
 
 
-def processData():
+if __name__ == '__main__':
 	ap = ArgumentParser()
 	ap.add_argument('-j', '--json', required=True, help="path of json file")
 	args = ap.parse_args()
@@ -20,7 +20,3 @@ def processData():
 	excludeOutliers(points)
 	calibrateData(points, fuso_length)
 	saveCalibratedData(os.path.splitext(args.json)[0] + '_calibrated.json', points)
-	
-
-if __name__ == '__main__':
-	processData()
