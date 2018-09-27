@@ -23,7 +23,5 @@ if __name__ == '__main__':
 
 	cap.release()
 
-	filename_json = os.path.splitext(args.video) + '.json'
-	filename_jpg = os.path.splitext(args.video) + '.jpg'
-	saveData(filename_json, points, fuso_length)
-	saveSnapshot(filename_jpg, snapshot, points, fuso_box)
+	saveData(os.path.splitext(args.video)[0] + '.json', points, fuso_length)
+	saveSnapshot(os.path.splitext(args.video)[0] + '.jpg', snapshot, points, fuso_box)
