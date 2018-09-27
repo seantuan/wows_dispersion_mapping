@@ -25,5 +25,5 @@ if __name__ == '__main__':
 
 	filename_json = os.path.splitext(args.video) + '.json'
 	filename_jpg = os.path.splitext(args.video) + '.jpg'
-	saveData('', points, fuso_length)
-	saveSnapshot('', snapshot, points, fuso_box)
+	saveData(filename_json, points, fuso_length)
+	saveSnapshot(filename_jpg, snapshot, points, fuso_box)
