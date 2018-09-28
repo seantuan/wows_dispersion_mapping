@@ -47,7 +47,6 @@ def mapping(capture, points):
 		costs = np.zeros((dim, dim))
 		for i, shell in enumerate(shells):
 			for j, measurement in enumerate(measurements):
-				# costs[i][j] = mahalanobis(x=[measurement[0], measurement[1]], mean=shell.pos(), cov=shell.cov())
 				costs[i][j] = np.linalg.norm(np.array([measurement[0], measurement[1]]) - np.array(shell.pos()))
 			if len(measurements) < dim:
 				for j in range(len(measurements), dim):
