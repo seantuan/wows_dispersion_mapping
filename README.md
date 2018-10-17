@@ -4,12 +4,12 @@ WiP
 
 This is a program writen in Python for mapping shell dispersion in World of Warships using topdown-veiw videos recorded from replays.
 
-###Dependencies
+### Dependencies
 ```
 numpy, scipy, filterpy, matplotlib, opencv
 ```
 
-###How to use
+### How to use
 
 This program consists of 3 python scripts, `read_video.py`, `process_data.py`, `plot.py`. 
 
