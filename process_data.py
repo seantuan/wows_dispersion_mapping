@@ -2,8 +2,8 @@ import os
 import numpy as np
 import json
 from argparse import ArgumentParser
-import utils.shell
-from utils.helper import excludeOutliers, calibrateData, saveCalibratedData
+from utils.shell import Shell, Point
+from utils.helper import excludeOutliers, calibrateData, saveCalibratedData, saveCalibratedDataCsv
 
 
 if __name__ == '__main__':
@@ -18,9 +18,10 @@ if __name__ == '__main__':
 		fuso_length = data['fuso_length']
 
 	points = []
-	for p in data.points:
-		points.append(Point([p.x, p.y, p.dx, p.dy]))
+	for p in data['points']:
+		points.append(Point([p['x'], p['dx'], p['y'], p['dy']]))
 
 	excludeOutliers(points)
 	calibrateData(points, fuso_length)
 	saveCalibratedData(os.path.splitext(args.json)[0] + '_calibrated.json', points)
+	saveCalibratedDataCsv(os.path.splitext(args.json)[0] + '_calibrated.csv', points)

@@ -1,6 +1,7 @@
 import os
 import cv2
 import json
+import csv
 import numpy as np
 from .shell import Shell, Point
 
@@ -110,3 +111,10 @@ def saveCalibratedData(filename, points):
 	data = dict({'filename': os.path.splitext(os.path.basename(filename))[0], 'points': points_dict})
 	with open(filename, 'w') as outfile:
 		json.dump(data, outfile, indent=4)
+
+def saveCalibratedDataCsv(filename, points):
+	with open(filename, 'w', newline='') as csvfile:
+		writer = csv.writer(csvfile, delimiter=',')
+		writer.writerow(['vertical', 'horizontal'])
+		for point in points:
+			writer.writerow([point.x, point.y])
