@@ -2,7 +2,7 @@ import os
 import cv2
 import numpy as np
 from argparse import ArgumentParser
-import utils.shell
+from utils.shell import Shell, Point
 from utils.helper import measureFuso, saveData, saveSnapshot, excludeOutliers, calibrateData, saveCalibratedData, saveCalibratedDataCsv
 from utils.mapping import mapping
 
