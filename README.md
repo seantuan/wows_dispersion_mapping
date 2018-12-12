@@ -47,9 +47,9 @@ plot.exe -j <path-to-calibrated-json-file>
 
 1. Set WoWs graphic setting to `Low`.
 2. Put the provided mods to `<World_of_Warships>/res_mods/<version>/`.
-3. Set up the recording program with the output of 1280x720 and reasonable bit rate.
+3. Set up the recording program with the output of 1280x720, 60 fps and reasonable bit rate.
 4. Open the replay, use `Ctrl + Shift + Backspace + r` to enter free cam, use the number keys to navigate and set up a top-down view over the target area, just like the example provided.
-5. Start recording, please make sure there's no shots entering the FoV during the start and the end of the recorded video.
+5. Start recording in 1/2 speed by pressing `delete` once, please make sure there's no shots entering the FoV during the start and the end of the recorded video.
 
 ## Todo list
 * Examine the shell tracking system.
