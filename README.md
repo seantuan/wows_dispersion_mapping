@@ -52,5 +52,7 @@ plot.exe -j <path-to-calibrated-json-file>
 5. Start recording, please make sure there's no shots entering the FoV during the start and the end of the recorded video.
 
 ## Todo list
-* Fully examine the shell tracking system.
+* Examine the shell tracking system.
 * Make the tracking coefficients self-adoptable.
+* Make the kalman filter more stubborn to rapid changes.
+* Adding direction of shell to the cost function of Hungarian algorithm.
