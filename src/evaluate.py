@@ -5,7 +5,9 @@ Column of csv file: "x", "y", using opencv coordinate system
 """
 import os
 import cv2
+import csv
 import numpy as np
+from scipy.optimize import linear_sum_assignment
 from argparse import ArgumentParser
 from utils.shell import Shell, Point
 from utils.helper import measureFuso, rescaleData
@@ -50,7 +52,7 @@ if __name__ == '__main__':
 		with open(annotation_filename, newline='') as csvfile:
 			reader = csv.DictReader(csvfile)
 			for row in reader:
-				true_points.append(Point([row['x'], row['y'], 0, 0]))
+				true_points.append(Point([int(row['x']), 0, int(row['y']), 0]))
 
 		rescaleData(true_points, fuso_length)
 		detected_shells += len(true_points)
@@ -79,7 +81,9 @@ if __name__ == '__main__':
 				# normal condition
 				errors.append(costs[row_idx[i]][col_idx[i]])
 
+
 	print("Total shells in the test data: {}".format(total_shells))
 	print("Total shells detected by the algorithm: {}".format(detected_shells))
-	print("Mean error: {}".format(np.mean(np.array(errors))))
+	print("Mean of error: {}".format(np.mean(np.array(errors))))
+	print("Std of error: {}".format(np.std(np.array(errors))))
 
