@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 from argparse import ArgumentParser
 from utils.shell import Shell, Point
-from utils.helper import measureFuso, saveData, saveSnapshot, excludeOutliers, calibrateData, saveCalibratedData, saveCalibratedDataCsv
+from utils.helper import measureFuso, saveData, saveSnapshot, excludeOutliers, rescaleData, rotateData, saveCalibratedData, saveCalibratedDataCsv
 from utils.mapping import mapping
 
 
@@ -28,6 +28,7 @@ if __name__ == '__main__':
 
 	# calibrate
 	excludeOutliers(points)
-	calibrateData(points, fuso_length)
+	rescaleData(points, fuso_length)
+	rotateData(points)
 	saveCalibratedData(os.path.splitext(args.video)[0] + '_calibrated.json', points)
 	saveCalibratedDataCsv(os.path.splitext(args.video)[0] + '_calibrated.csv', points)

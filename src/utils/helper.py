@@ -83,13 +83,15 @@ def excludeOutliers(points):
 	points = [point for point in points if isNotOutlier(point.y, ys, 3)]
 
 
-def calibrateData(points, fuso_length):
+def rescaleData(points, fuso_length):
 	# rescale
 	scale = 212.75 / float(fuso_length)
 	for point in points:
 		point.x = point.x * scale
 		point.y = point.y * scale
 
+
+def rotateData(points):
 	# rotate
 	directions = np.array([np.arctan2(-point.dy, abs(point.dx)) for point in points])
 	xs = np.array([point.x for point in points])
