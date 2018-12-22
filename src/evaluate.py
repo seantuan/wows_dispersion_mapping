@@ -75,7 +75,7 @@ if __name__ == '__main__':
 
 			elif row_idx[i] > len(true_points) - 1:
 				# true points < detected points (usually this won't happen)
-				pass
+				print("[!] true points < detected points happened somehow in {}".format(video_filename))
 
 			else:
 				# normal condition
