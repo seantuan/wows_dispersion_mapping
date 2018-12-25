@@ -27,7 +27,7 @@ if __name__ == '__main__':
 	saveSnapshot(os.path.splitext(args.video)[0] + '.jpg', snapshot, points, fuso_box)
 
 	# calibrate
-	excludeOutliers(points)
+	# excludeOutliers(points)
 	rescaleData(points, fuso_length)
 	rotateData(points)
 	saveCalibratedData(os.path.splitext(args.video)[0] + '_calibrated.json', points)

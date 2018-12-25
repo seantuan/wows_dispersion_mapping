@@ -22,6 +22,9 @@ class Shell:
 	def pos(self):
 		return [self.tracker.x[0], self.tracker.x[2]]
 
+	def speed(self):
+		return [self.tracker.x[1], self.tracker.x[3]]
+
 	def cov(self):
 		return [[self.tracker.P[0, 0], self.tracker.P[0, 2]],
 				[self.tracker.P[2, 0], self.tracker.P[2, 2]]]

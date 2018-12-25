@@ -114,6 +114,7 @@ def saveCalibratedData(filename, points):
 	with open(filename, 'w') as outfile:
 		json.dump(data, outfile, indent=4)
 
+
 def saveCalibratedDataCsv(filename, points):
 	with open(filename, 'w', newline='') as csvfile:
 		writer = csv.writer(csvfile, delimiter=',')

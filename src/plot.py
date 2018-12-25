@@ -16,10 +16,10 @@ if __name__ == '__main__':
 		data = json.load(file)
 		points = data['points']
 
-	# randomly choose 180
-	random.seed(30)
-	if len(points) > 180:
-		points = random.sample(points, 180)
+	# # randomly choose 180
+	# random.seed(30)
+	# if len(points) > 180:
+	# 	points = random.sample(points, 180)
 
 	xs = np.array([point['x'] for point in points])
 	ys = np.array([point['y'] for point in points])
