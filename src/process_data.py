@@ -21,7 +21,7 @@ if __name__ == '__main__':
 	for p in data['points']:
 		points.append(Point([p['x'], p['dx'], p['y'], p['dy']]))
 
-	excludeOutliers(points)
+	# excludeOutliers(points)
 	rescaleData(points, fuso_length)
 	rotateData(points)
 	saveCalibratedData(os.path.splitext(args.json)[0] + '_calibrated.json', points)
