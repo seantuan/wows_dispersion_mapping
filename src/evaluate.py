@@ -79,11 +79,21 @@ if __name__ == '__main__':
 
 			else:
 				# normal condition
-				errors.append(costs[row_idx[i]][col_idx[i]])
+				errors.append([costs[row_idx[i]][col_idx[i]], 
+							   (points[col_idx[i]].x - true_points[row_idx[i]].x), 
+							   (points[col_idx[i]].y - true_points[row_idx[i]].y)])
 
 
 	print("Total shells in the test data: {}".format(total_shells))
 	print("Total shells detected by the algorithm: {}".format(detected_shells))
-	print("Mean of error: {}".format(np.mean(np.array(errors))))
-	print("Std of error: {}".format(np.std(np.array(errors))))
+	print("Mean of error: {}".format(np.mean(np.array(errors)[:, 0])))
+	print("Std of error: {}".format(np.std(np.array(errors)[:, 0])))
+
+	with open(os.path.join(args.dir, 'errors.csv'), 'w', newline='') as csvfile:
+		fieldnames = ['2-norm', 'vertical', 'horizontal']
+		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+		writer.writeheader()
+		for error in errors:
+			writer.writerow({'2-norm': error[0], 'vertical': error[1], 'horizontal': error[2]})
 
