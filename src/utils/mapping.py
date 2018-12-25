@@ -78,7 +78,7 @@ def mapping(capture, points):
 		# lost track
 		for shell in shells:
 			if shell.losts > 6:
-				if len(shell.xs) > 20:
+				if len(shell.xs) > 40:
 					point = Point(shell.xs[len(shell.xs) - 1], shell.color)
 					points.append(point)
 				shells.remove(shell)
