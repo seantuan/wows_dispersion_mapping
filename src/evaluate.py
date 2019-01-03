@@ -68,7 +68,7 @@ if __name__ == '__main__':
 					costs[i][j] = max(costs[i]) # dummy
 
 		row_idx, col_idx = linear_sum_assignment(costs)
-		for i in row_idx:
+		for i, _ in enumerate(row_idx):
 			if col_idx[i] > len(points) - 1:
 				# true points > detected points
 				pass
