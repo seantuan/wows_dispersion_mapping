@@ -65,11 +65,12 @@ if __name__ == '__main__':
 				costs[i][j] = np.linalg.norm(np.array([tp.x, tp.y]) - np.array([p.x, p.y]))
 			if len(points) < dim:
 				for j in range(len(points), dim):
-					costs[i][j] = max(costs[i]) # dummy
+					costs[i][j] = np.finfo(np.float32).max # dummy
 
 		row_idx, col_idx = linear_sum_assignment(costs)
 		for i, _ in enumerate(row_idx):
 			if col_idx[i] > len(points) - 1:
+				# pointing to dummy
 				# true points > detected points
 				pass
 
@@ -82,6 +83,7 @@ if __name__ == '__main__':
 				errors.append([costs[row_idx[i]][col_idx[i]], 
 							   (points[col_idx[i]].x - true_points[row_idx[i]].x), 
 							   (points[col_idx[i]].y - true_points[row_idx[i]].y)])
+		print(costs[row_idx, col_idx])
 
 
 	print("Total shells in the test data: {}".format(total_shells))

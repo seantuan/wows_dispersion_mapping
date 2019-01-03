@@ -50,10 +50,10 @@ def mapping(capture, points):
 				costs[i][j] = np.linalg.norm(np.array([measurement[0], measurement[1]]) - np.array(shell.pos()))
 			if len(measurements) < dim:
 				for j in range(len(measurements), dim):
-					costs[i][j] = max(costs[i]) # dummy
+					costs[i][j] = np.finfo(np.float32).max # dummy
 
 		row_idx, col_idx = linear_sum_assignment(costs)
-		for i in row_idx:
+		for i, _ in enumerate(row_idx):
 			if col_idx[i] > len(measurements) - 1:
 				# lose track of shell
 				pass
