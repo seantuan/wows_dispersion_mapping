@@ -83,7 +83,7 @@ if __name__ == '__main__':
 				errors.append([costs[row_idx[i]][col_idx[i]], 
 							   (points[col_idx[i]].x - true_points[row_idx[i]].x), 
 							   (points[col_idx[i]].y - true_points[row_idx[i]].y)])
-		print(costs[row_idx, col_idx])
+		# print(costs[row_idx, col_idx])
 
 
 	print("Total shells in the test data: {}".format(total_shells))
