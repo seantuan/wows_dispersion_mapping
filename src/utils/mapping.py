@@ -74,7 +74,7 @@ def mapping(capture, points):
 				cx, cy = measurements[col_idx[i]][0], measurements[col_idx[i]][1]
 				if mahalanobis(x=[cx, cy], mean=shells[row_idx[i]].pos(), cov=shells[row_idx[i]].cov()) < 8:
 					shells[row_idx[i]].update(z=[cx, cy])
-					shells[row_idx[i]].tracker.Q *= 0.98 # generally decreasing process noise
+					shells[row_idx[i]].tracker.Q *= 0.98 # generally decrease process noise
 
 		# lost track
 		for shell in shells:
